@@ -13,5 +13,6 @@ namespace DotNet_Backend.Data
         public User User { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime LastEditDate { get; set; }
     }
 }

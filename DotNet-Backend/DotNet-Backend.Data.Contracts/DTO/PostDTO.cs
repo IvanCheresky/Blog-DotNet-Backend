@@ -11,5 +11,6 @@ namespace DotNet_Backend.Data.Contracts.DTO
         public int UserId { get; set; }
         public ICollection<CommentDTO> Comments { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime LastEditDate { get; set; }
     }
 }
