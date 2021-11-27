@@ -119,7 +119,7 @@ namespace DotNet_Backend
                 using (var context = serviceScope.ServiceProvider.GetRequiredService<BlogContext>())
                 {
 
-                    //context.Database.Migrate();
+                    context.Database.Migrate();
                 }
             }
 

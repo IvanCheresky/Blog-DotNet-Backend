@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  blog-db:
+    image: postgres:14
+    command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=blog
+      - POSTGRES_PASSWORD=blog
+      - POSTGRES_DB=blog
+    networks:
+      - blog
+
+
+  dotnet-backend:
+    image: ${DOCKER_REGISTRY-}dotnetbackend
+    build:
+      context: .
+      dockerfile: DotNet-Backend/Dockerfile
+    ports:
+      - 5000:80
+    environment:
+      - ConnectionStrings__BlogDbContext=Host=blog-db;Port=5432;Database=blog;Username=blog;Password=blog
+    networks:
+      - blog
+    depends_on:
+      - blog-db
+
+
+volumes:
+  database-data:
+    driver: local
+
+
+networks:
+  blog:
+    driver: bridge
