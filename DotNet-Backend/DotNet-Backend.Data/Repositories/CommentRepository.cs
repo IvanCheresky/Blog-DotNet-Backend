@@ -62,6 +62,7 @@ namespace DotNet_Backend.Data.Repositories
         {
             var c = _blogContext.Comments.Find(id);
             _blogContext.Comments.Remove(c);
+            _blogContext.SaveChanges();
         }
 
         public void SaveChanges()

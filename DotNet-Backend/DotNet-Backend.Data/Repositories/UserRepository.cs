@@ -54,6 +54,7 @@ namespace DotNet_Backend.Data.Repositories
         {
             var u = _blogContext.Users.Find(id);
             _blogContext.Users.Remove(u);
+            _blogContext.SaveChanges();
         }
 
         public void SaveChanges()
