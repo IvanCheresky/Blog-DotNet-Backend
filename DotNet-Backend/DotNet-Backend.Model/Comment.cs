@@ -9,6 +9,5 @@ namespace DotNet_Backend.Data
         public int UserId { get; set; }
         public int PostId { get; set; }
         public DateTime CreationDate { get; set; }
-
     }
 }

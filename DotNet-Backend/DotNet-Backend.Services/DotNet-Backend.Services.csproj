@@ -5,4 +5,17 @@
     <RootNamespace>DotNet_Backend.Services</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet-Backend.Data.Contracts\DotNet-Backend.Data.Contracts.csproj" />
+    <ProjectReference Include="..\DotNet-Backend.Data\DotNet-Backend.Data.csproj" />
+  </ItemGroup>
+
 </Project>

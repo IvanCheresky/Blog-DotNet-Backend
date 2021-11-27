@@ -16,6 +16,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using DotNet_Backend.Data;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using DotNet_Backend.Data.Contracts.Interfaces;
+using DotNet_Backend.Data.Repositories;
+using DotNet_Backend.Data.Settings.Interfaces;
+using DotNet_Backend.Services;
+using DotNet_Backend.Services.Interfaces;
 
 namespace DotNet_Backend
 {
@@ -82,11 +88,23 @@ namespace DotNet_Backend
 
         private void AddAutoMapper(IServiceCollection services)
         {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapping());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         public void DependencyInjections(IServiceCollection services)
         {
+            var connectionStrings = Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
+            services.AddSingleton<IConnectionStrings>(connectionStrings);
 
+            services.AddScoped<IBlogContext, BlogContext>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
