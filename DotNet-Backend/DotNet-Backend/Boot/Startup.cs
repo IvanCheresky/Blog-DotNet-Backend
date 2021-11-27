@@ -1,3 +1,4 @@
+using DotNet_Backend.Data.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,8 +10,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using DotNet_Backend.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_Backend
 {
@@ -32,6 +37,56 @@ namespace DotNet_Backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotNet_Backend", Version = "v1" });
             });
+
+            var connectionStrings = this.Configuration.GetSection("ConnectionStrings").Get<ConnectionStrings>();
+
+            services.AddDbContext<BlogContext>(options =>
+                options.UseNpgsql(connectionStrings.BlogDbContext,
+                    b => b.MigrationsHistoryTable("__EFMigrationsHistory", connectionStrings.DefaultSchema)));
+
+            services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
+            {
+                builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed(host => true)
+                    .AllowCredentials();
+            }));
+
+            AddSwagger(services);
+            AddAutoMapper(services);
+
+            services.AddHealthChecks();
+
+            DependencyInjections(services);
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            //services.AddSwaggerGen(options =>
+            //{
+            //    var groupName = "v1";
+
+            //    options.SwaggerDoc(groupName, new OpenApiInfo
+            //    {
+            //        Title = $"Blog {groupName}",
+            //        Version = groupName,
+            //        Description = "Blog API"
+            //    });
+
+            //    // Set the comments path for the Swagger JSON and UI.
+            //    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            //    //options.IncludeXmlComments(xmlPath);
+            //});
+        }
+
+        private void AddAutoMapper(IServiceCollection services)
+        {
+        }
+
+        public void DependencyInjections(IServiceCollection services)
+        {
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,9 +95,10 @@ namespace DotNet_Backend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotNet_Backend v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotNet_Backend v1"));
 
             app.UseHttpsRedirection();
 
@@ -53,7 +109,21 @@ namespace DotNet_Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
+
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetRequiredService<BlogContext>())
+                {
+
+                    //context.Database.Migrate();
+                }
+            }
+
+
         }
     }
 }
