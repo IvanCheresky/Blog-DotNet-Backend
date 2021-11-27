@@ -10,6 +10,7 @@ namespace DotNet_Backend.Data
         public string Title { get; set; }
         public string Content { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public DateTime CreationDate { get; set; }
     }

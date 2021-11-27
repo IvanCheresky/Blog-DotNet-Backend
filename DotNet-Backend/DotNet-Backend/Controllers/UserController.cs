@@ -21,7 +21,7 @@ namespace DotNet_Backend.Controllers
         }
 
         [HttpGet()]
-        public IActionResult GetUsers()
+        public IActionResult GetAllUsers()
         {
             var users = _userService.GetAll();
             return Ok(users);
