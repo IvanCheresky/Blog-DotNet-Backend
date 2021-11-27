@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using DotNet_Backend.Data.Contracts.DTO;
+﻿using DotNet_Backend.Data.Contracts.DTO;
 using DotNet_Backend.Data.Contracts.Requests;
+using System.Collections.Generic;
 
 namespace DotNet_Backend.Services.Interfaces
 {

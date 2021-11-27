@@ -2,6 +2,7 @@
 using DotNet_Backend.Data;
 using DotNet_Backend.Data.Contracts.DTO;
 using DotNet_Backend.Data.Contracts.Requests;
+using DotNet_Backend.Model;
 
 namespace DotNet_Backend.Services
 {

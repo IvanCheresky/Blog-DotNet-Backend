@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using DotNet_Backend.Data;
 using DotNet_Backend.Data.Contracts.DTO;
 using DotNet_Backend.Data.Contracts.Interfaces;
 using DotNet_Backend.Data.Contracts.Requests;
 using DotNet_Backend.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DotNet_Backend.Services
 {

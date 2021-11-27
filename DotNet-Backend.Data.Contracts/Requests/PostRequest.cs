@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DotNet_Backend.Data.Contracts.DTO;
-
-namespace DotNet_Backend.Data.Contracts.Requests
+﻿namespace DotNet_Backend.Data.Contracts.Requests
 {
     public class PostRequest
     {

@@ -1,8 +1,7 @@
 ﻿using DotNet_Backend.Data.Contracts.Interfaces;
-using DotNet_Backend.Data.Settings;
 using DotNet_Backend.Data.Settings.Interfaces;
+using DotNet_Backend.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DotNet_Backend.Data
 {
@@ -27,4 +26,4 @@ namespace DotNet_Backend.Data
         }
 
     }
-    }
+}

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace DotNet_Backend.Data
+namespace DotNet_Backend.Model
 {
     public class Post
     {

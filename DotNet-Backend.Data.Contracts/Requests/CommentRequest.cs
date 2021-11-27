@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DotNet_Backend.Data.Contracts.Requests
+﻿namespace DotNet_Backend.Data.Contracts.Requests
 {
     public class CommentRequest
     {

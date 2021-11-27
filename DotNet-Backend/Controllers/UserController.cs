@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DotNet_Backend.Data;
+﻿using DotNet_Backend.Data.Contracts.Requests;
 using DotNet_Backend.Services.Interfaces;
-using DotNet_Backend.Data.Contracts.Requests;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet_Backend.Controllers
 {

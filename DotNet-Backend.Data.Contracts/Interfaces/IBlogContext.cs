@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNet_Backend.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_Backend.Data.Contracts.Interfaces
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNet_Backend.Data
+namespace DotNet_Backend.Model
 {
     public class Comment
     {

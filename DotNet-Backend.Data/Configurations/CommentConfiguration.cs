@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+﻿using DotNet_Backend.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

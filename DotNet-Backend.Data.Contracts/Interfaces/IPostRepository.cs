@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DotNet_Backend.Model;
 
 namespace DotNet_Backend.Data.Contracts.Interfaces
 {

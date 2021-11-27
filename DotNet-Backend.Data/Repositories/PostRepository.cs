@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DotNet_Backend.Data.Contracts.Interfaces;
+using System;
 using System.Linq;
-using DotNet_Backend.Data.Contracts.Interfaces;
 
 namespace DotNet_Backend.Data.Repositories
 {

@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using DotNet_Backend.Data.Contracts.Interfaces;
+﻿using DotNet_Backend.Data.Contracts.Interfaces;
+using System.Linq;
 
 namespace DotNet_Backend.Data.Repositories
 {
@@ -46,7 +46,7 @@ namespace DotNet_Backend.Data.Repositories
 
             _blogContext.Users.Update(u);
             _blogContext.SaveChanges();
-            
+
             return u;
         }
 
