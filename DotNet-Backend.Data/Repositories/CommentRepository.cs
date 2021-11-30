@@ -1,6 +1,8 @@
 ﻿using DotNet_Backend.Data.Contracts.Interfaces;
 using System;
 using System.Linq;
+using DotNet_Backend.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_Backend.Data.Repositories
 {
@@ -15,22 +17,22 @@ namespace DotNet_Backend.Data.Repositories
 
         public IQueryable<Comment> GetAll()
         {
-            return _blogContext.Comments;
+            return _blogContext.Comments.Include(c => c.User);
         }
 
         public IQueryable<Comment> GetAllFromUser(int userId)
         {
-            return _blogContext.Comments.Where(c => c.UserId == userId);
+            return _blogContext.Comments.Include(c => c.User).Where(c => c.UserId == userId);
         }
 
         public IQueryable<Comment> GetAllFromPost(int postId)
         {
-            return _blogContext.Comments.Where(c => c.PostId == postId);
+            return _blogContext.Comments.Include(c => c.User).Where(c => c.PostId == postId);
         }
 
         public Comment Get(int id)
         {
-            return _blogContext.Comments.Find(id);
+            return _blogContext.Comments.Include(c => c.User).FirstOrDefault(c => c.Id == id);
         }
 
         public Comment Add(Comment comment)

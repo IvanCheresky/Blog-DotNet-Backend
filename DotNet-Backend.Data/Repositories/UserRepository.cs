@@ -1,5 +1,6 @@
 ﻿using DotNet_Backend.Data.Contracts.Interfaces;
 using System.Linq;
+using DotNet_Backend.Model;
 
 namespace DotNet_Backend.Data.Repositories
 {

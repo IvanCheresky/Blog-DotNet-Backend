@@ -1,6 +1,8 @@
 ﻿using DotNet_Backend.Data.Contracts.Interfaces;
 using System;
 using System.Linq;
+using DotNet_Backend.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_Backend.Data.Repositories
 {
@@ -15,7 +17,7 @@ namespace DotNet_Backend.Data.Repositories
 
         public IQueryable<Post> GetAll()
         {
-            return _blogContext.Posts;
+            return _blogContext.Posts.Include(p => p.User);
         }
 
         public IQueryable<Post> GetAllFromUser(int userId)
@@ -25,7 +27,7 @@ namespace DotNet_Backend.Data.Repositories
 
         public Post Get(int id)
         {
-            return _blogContext.Posts.Find(id);
+            return _blogContext.Posts.Include(p => p.User).FirstOrDefault(p => p.Id == id);
         }
 
         public Post Add(Post post)

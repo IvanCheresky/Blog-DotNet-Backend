@@ -7,6 +7,8 @@ using DotNet_Backend.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DotNet_Backend.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotNet_Backend.Services
 {
