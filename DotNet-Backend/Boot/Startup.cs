@@ -28,8 +28,11 @@ namespace DotNet_Backend.Boot
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotNet_Backend", Version = "v1" });
@@ -40,14 +43,6 @@ namespace DotNet_Backend.Boot
             services.AddDbContext<BlogContext>(options =>
                 options.UseNpgsql(connectionStrings.BlogDbContext,
                     b => b.MigrationsHistoryTable("__EFMigrationsHistory", connectionStrings.DefaultSchema)));
-
-            services.AddCors(o => o.AddPolicy("AllowOrigin", builder =>
-            {
-                builder.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .SetIsOriginAllowed(host => true)
-                    .AllowCredentials();
-            }));
 
             AddSwagger(services);
             AddAutoMapper(services);
@@ -109,6 +104,11 @@ namespace DotNet_Backend.Boot
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotNet_Backend v1"));
