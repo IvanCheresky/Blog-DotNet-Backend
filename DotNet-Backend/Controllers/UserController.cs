@@ -48,5 +48,12 @@ namespace DotNet_Backend.Controllers
             _userService.DeleteUser(id);
             return Ok();
         }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest lr)
+        {
+            var user = _userService.Login(lr);
+            return Ok(user);
+        }
     }
 }

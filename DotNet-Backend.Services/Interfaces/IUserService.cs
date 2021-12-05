@@ -11,5 +11,6 @@ namespace DotNet_Backend.Services.Interfaces
         UserDTO RegisterUser(UserRequest u);
         UserDTO UpdateUser(UserRequest u);
         void DeleteUser(int id);
+        UserDTO Login(LoginRequest lr);
     }
 }

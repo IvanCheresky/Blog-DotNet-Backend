@@ -92,6 +92,7 @@ namespace DotNet_Backend.Boot
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IPostRepository, PostRepository>();

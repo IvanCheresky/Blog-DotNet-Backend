@@ -23,6 +23,16 @@ namespace DotNet_Backend.Data.Repositories
             return _blogContext.Users.Find(id);
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return _blogContext.Users.FirstOrDefault(u => u.Username == username);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _blogContext.Users.FirstOrDefault(u => u.Email == email);
+        }
+
         public User Add(User user)
         {
             _blogContext.Users.Add(user);
